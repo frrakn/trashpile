@@ -1,0 +1,80 @@
+@import 'normalize';
+
+.container {
+  padding: 15px 25px;
+}
+
+.recap-component {
+  margin-bottom: 20px;
+}
+
+.header-component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto 5px;
+  text-align: center;
+}
+
+.team-logo {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.team-logo.red {
+  background-color: #FF7171;
+}
+
+.team-logo.blue {
+  background-color: #71D1FF;
+}
+
+.header-component .divider {
+  display: flex;
+  width: 2px;
+  height: 1.5em;
+  background-color: #ccc;
+}
+
+.header-component .score {
+  display: flex;
+  font-size: 2em;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.timer-component {
+  padding-top: 10px;
+  text-align: center;
+  color: #828282;
+}
+
+.timer-component .live {
+  font-size: 0.8em;
+  padding: 3px 5px;
+  border: 1px solid #00D293;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  color: #00D293;
+}
+
+.recap-stats-component {
+  margin: auto;
+}
+
+.stat-row td {
+  padding: 3px 20px;
+}
+
+.stat-row .label {
+  font-weight: 600;
+}
+
+.stat-row .stat {
+  text-align: right;
+}
