@@ -1,16 +1,18 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import Reducer from '../reducers/index';
-import { AppContainer } from '../containers/AppContainer';
-import '../../css/app.scss';
+import React, { Component, PropTypes } from 'react';
+import Header from './Header';
+import TeamStats from './TeamStats';
 
-const store = createStore(Reducer);
+export default function App (props) {
+  const { kills, gameTime } = props;
 
-render(
-  <Provider store={store}>
-    <AppContainer />
-  </Provider>,
-  document.getElementById('root')
-);
+  return (
+    <div className="app-component">
+      <Header
+        gameTime={gameTime}
+        kills={kills}
+      />
+
+      <TeamStats />
+    </div>
+  );
+}

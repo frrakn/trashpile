@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Header from '../components/Header';
+import App from '../components/App';
 import { updateTime } from '../actions/index';
 
 function mapStateToProps(state) {
@@ -10,9 +10,21 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+  let ws = websocketConnect('ws://localhost:8080');
+  ws.onmessage = function(event) {
+    let data = JSON.parse(event.data);
+    if (data['1001600049']) {
+      dispatch(updateTime(data['1001600049'].teamStats[100].gameLength));
+    }
+  }
+
   return {
     updateGameTime: gameTime => dispatch(updateTime(gameTime))
   };
 }
 
-export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
+function websocketConnect(websocketUrl) {
+  return new WebSocket(websocketUrl, 'emitter-protocol');
+}
+
+export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);

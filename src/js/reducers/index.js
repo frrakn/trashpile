@@ -1,8 +1,8 @@
 import { List, Map } from 'immutable';
 
 const initialState = Map({
-  gameTime: 10000,
-  kills: 10
+  gameTime: 0,
+  kills: 0
 });
 
 export default function reducer(state = initialState, action) {

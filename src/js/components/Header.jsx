@@ -3,7 +3,7 @@ import Timer from './Timer';
 import TeamScore from './TeamScore';
 
 export default function Header (props) {
-  const { kills, gameTime, updateGameTime } = props;
+  const { kills, gameTime } = props;
 
   return (
     <div className="header-component">
