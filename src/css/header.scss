@@ -1,0 +1,23 @@
+.header-component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto 0.2em;
+  text-align: center;
+  background-color: $app-panel-color;
+  border-bottom: 2px solid $app-shadow-color;
+}
+
+.header-component .divider {
+  display: flex;
+  width: 2px;
+  height: 1.5em;
+  background-color: #ccc;
+}
+
+.header-component .score {
+  display: flex;
+  font-size: 2em;
+  line-height: 1;
+  font-weight: 600;
+}

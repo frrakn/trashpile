@@ -1,0 +1,44 @@
+.player {
+  display: flex;
+  align-items: flex-start;
+  background-color: $app-panel-color;
+  padding: 1em;
+
+  &:nth-child(even) {
+    background-color: darken($app-panel-color, 1%);
+  }
+}
+
+.player-portrait {
+  margin-right: 1em;
+  background-color: #222;
+  min-width: 3em;
+  min-height: 3em;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.player-body {
+  flex: 1;
+
+  .name {
+    -webkit-font-smoothing: antialiased;
+    color: darken($font-color, 10%);
+    margin-bottom: 0.2em;
+  }
+
+  .champ-name {
+    margin-left: 1em;
+    color: $alt-font-color;
+  }
+}
+
+.item {
+  margin-right: 0.2em;
+  border: 2px solid #000;
+  background-color: #eee;
+  width: 1.5em;
+  height: 1.5em;
+  float: left;
+}

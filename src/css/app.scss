@@ -1,19 +1,22 @@
 @import 'normalize';
+@import 'variables';
+@import 'header';
+@import 'teamStats';
+@import 'player';
+
+body {
+  background-color: $app-background-color;
+  color: $font-color;
+}
 
 .container {
-  padding: 15px 25px;
+  padding: 1em;
 }
 
-.recap-component {
-  margin-bottom: 20px;
-}
-
-.header-component {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto 5px;
-  text-align: center;
+.divider-gray {
+  color: #666281;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
 }
 
 .team-logo {
@@ -33,34 +36,25 @@
   background-color: #71D1FF;
 }
 
-.header-component .divider {
-  display: flex;
-  width: 2px;
-  height: 1.5em;
-  background-color: #ccc;
-}
-
-.header-component .score {
-  display: flex;
-  font-size: 2em;
-  line-height: 1;
-  font-weight: 600;
+.recap-component {
+  margin-bottom: 20px;
 }
 
 .timer-component {
   padding-top: 10px;
   text-align: center;
-  color: #828282;
+  -webkit-font-smoothing: antialiased;
 }
 
 .timer-component .live {
+  margin-top: 0.2em;
   font-size: 0.8em;
   padding: 3px 5px;
   border: 1px solid #00D293;
+  color: #00D293;
   border-radius: 4px;
   font-weight: 600;
   letter-spacing: .05em;
-  color: #00D293;
 }
 
 .recap-stats-component {

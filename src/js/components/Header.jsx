@@ -3,13 +3,15 @@ import Timer from './Timer';
 import TeamScore from './TeamScore';
 
 export default function Header (props) {
-  const { kills, gameTime } = props;
+  const { gameTime, kills, handleClick } = props;
 
   return (
-    <div className="header-component">
+    <div className="header-component container"
+      onClick={handleClick(gameTime + 1)}
+    >
       <TeamScore
         color={'red'}
-        kills={kills}
+        kills={kills[0]}
       />
 
       <Timer
@@ -18,7 +20,7 @@ export default function Header (props) {
 
       <TeamScore
         color={'blue'}
-        kills={kills}
+        kills={kills[1]}
       />
     </div>
   );

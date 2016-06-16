@@ -1,0 +1,32 @@
+.team-stats {
+  background-color: $app-panel-color;
+  margin-bottom: 0.2em;
+}
+
+.table {
+  width: 100%;
+  font-size: 0.9em;
+  color: darken($font-color, 20%);
+
+  thead tr {
+    background-color: $app-header-color;
+    font-weight: 600;
+    color: $font-color;
+  }
+
+  tr {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  tr:nth-child(even) {
+    background-color: darken($app-panel-color, 1%);
+  }
+
+  td {
+    padding: 0.5em;
+  }
+
+  .table-break {
+    background-color: darken($app-panel-color, 2%);
+  }
+}
