@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
+import React, { Component, PropTypes } from 'react';
 import App from '../components/App';
+import { connect } from 'react-redux';
 import { updateTime, updateState } from '../actions/index';
 
 function getTeamKills(players) {
@@ -22,21 +23,13 @@ function formatTeamStats(team, players) {
 }
 
 function mapStateToProps(state) {
-  if (state.skipFormatting) {
-    return state;
-  }
-
-  var players = Object.keys(state.playerStats).map(key => state.playerStats[key]);
-  var team1 = players.slice(0, 5);
-  var team2 = players.slice(5, 10);
+  let selectedGameId = state.games.length > 0 ? state.games[0].id : null;
 
   return {
-    gameTime: state.t,
-    teams: [
-      formatTeamStats(state.teamStats['100'], team1),
-      formatTeamStats(state.teamStats['200'], team2)
-    ],
-    players: players
+    players: state.players,
+    teams: state.teams,
+    games: state.games,
+    selectedGameId: selectedGameId
   };
 }
 
@@ -47,4 +40,14 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+function Container(props) {
+  return (
+    <div className="app-container">
+      <App
+        {...props}
+      />
+    </div>
+  );
+}
+
+export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(Container);

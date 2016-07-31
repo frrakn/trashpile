@@ -18,7 +18,10 @@ const Player = function(props) {
         <div>
           {props.player.items.map(function(item) {
             return (
-              <Item item={item} />
+              <Item
+                key={item.name}
+                item={item}
+              />
             );
           })}
         </div>

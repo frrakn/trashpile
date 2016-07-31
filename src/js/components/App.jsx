@@ -1,35 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import Header from './Header';
-import TeamStats from './TeamStats';
-import PlayerStats from './PlayerStats';
-import Player from './Player';
+import Game from './Game';
 
-export default function App (props) {
-  const { gameTime, teams, players, updateGameTime } = props;
+export default function App(props) {
+  const { selectedGameId, games, teams, players } = props,
+    game = games.filter((game) => game.id === selectedGameId)[0];
 
   return (
     <div className="app-component">
-      <Header
-        gameTime={gameTime}
-        kills={[teams[0].kills, teams[1].kills]}
-        handleClick={updateGameTime}
-      />
-
-      <TeamStats
-        teams={teams}
-      />
-
-      <PlayerStats
-        players={players}
-      />
-
-      {players.map(function(player) {
-        return (
-          <Player
-            player={player}
-          />
-        );
-      })}
+      {game &&
+        <Game
+          game={game}
+          teams={teams.filter((team) => game.teamIds.includes(team.id))}
+          players={players.filter((player) => game.playerIds.includes(player.id))}
+        />
+      }
     </div>
   );
 }

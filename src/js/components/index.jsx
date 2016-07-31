@@ -15,12 +15,11 @@ function websocketConnect(websocketUrl) {
 
 const gameId = '1001670144';
 
-let ws = websocketConnect('ws://localhost:8080');
+// let ws = websocketConnect('ws://52.23.8.215:9721/');
+let ws = websocketConnect('ws://localhost:8080/');
 ws.onmessage = function(event) {
   let data = JSON.parse(event.data);
-  if (data[gameId]) {
-    store.dispatch(updateState(data[gameId]));
-  }
+  console.log(data);
 }
 
 console.log('---websocket bound---');

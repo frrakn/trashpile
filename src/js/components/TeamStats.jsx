@@ -24,6 +24,8 @@ const teamStatsMap = [
 ]
 
 const TeamStats = function(props) {
+  const { teams } = props;
+
   return (
     <div className="team-stats">
       <table className="table">
