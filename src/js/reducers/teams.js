@@ -1,4 +1,4 @@
-const teamSchema = {
+export const teamSchema = {
   id: -1
 }
 

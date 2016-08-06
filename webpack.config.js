@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    javascript: './src/js/components/index.jsx',
+    javascript: './src/js/index.js',
     html: './src/index.html',
   },
   output: {

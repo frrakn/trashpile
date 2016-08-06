@@ -1,9 +1,11 @@
-const itemSchema = {
+import {ADD_TEAM} from '../actions/players';
+
+export const itemSchema = {
   name: '',
   image: ''
 }
 
-const playerSchema = {
+export const playerSchema = {
   id: -1,
   teamId: -1,
   kills: 0,
@@ -17,6 +19,11 @@ const initialState = [playerSchema];
 
 export default function players(state = initialState, action) {
   switch (action.type) {
+    case ADD_TEAM:
+      return [
+        ...state,
+        action.player
+      ];
     default:
       return state;
   }
