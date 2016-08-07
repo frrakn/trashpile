@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import App from '../components/App';
 import { connect } from 'react-redux';
 import { updateTime, updateState } from '../actions/index';
+import WebsocketConnection from '../util/websocketConnection';
 
 function getTeamKills(players) {
   return players.reduce(function(kills, player) {
@@ -40,14 +41,23 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function Container(props) {
-  return (
-    <div className="app-container">
-      <App
-        {...props}
-      />
-    </div>
-  );
+class Container extends React.Component {
+  componentDidMount() {
+    const url = 'ws://52.23.8.215:9721/',
+      ws = new WebsocketConnection(url, {debug: true});
+
+    ws.connect();
+  }
+
+  render() {
+    return (
+      <div className="app-container">
+        <App
+          {...this.props}
+        />
+      </div>
+    );
+  }
 }
 
 export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(Container);
