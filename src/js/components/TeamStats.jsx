@@ -43,7 +43,7 @@ const TeamStats = function(props) {
           </tr>
         </thead>
         <tbody>
-          {teamStatsMap.map(function(stat) {
+          {props.teams.length > 0 && teamStatsMap.map(function(stat) {
               return (
                 <tr key={stat.label}>
                   <td>

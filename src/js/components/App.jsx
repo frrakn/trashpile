@@ -2,16 +2,20 @@ import React, { Component, PropTypes } from 'react';
 import Game from './Game';
 
 export default function App(props) {
-  const { selectedGameId, games, teams, players } = props,
-    game = games.filter((game) => game.id === selectedGameId)[0];
+  const { gameTime, selectedGameId, games, teams, players, stats } = props,
+    selectedGame = games.filter((game) => game.id === selectedGameId)[0],
+    selectedTeams = teams.filter((team) => selectedGame.teamIds.includes(team.id)),
+    selectedTeamsIds = selectedTeams.map((team) => team.id),
+    selectedPlayers = players.filter((player) => selectedTeamsIds.includes(player.teamId));
 
   return (
     <div className="app-component">
-      {game &&
+      {selectedGame &&
         <Game
-          game={game}
-          teams={teams.filter((team) => game.teamIds.includes(team.id))}
-          players={players.filter((player) => game.playerIds.includes(player.id))}
+          gameTime={gameTime}
+          game={selectedGame}
+          teams={selectedTeams}
+          players={selectedPlayers}
         />
       }
     </div>

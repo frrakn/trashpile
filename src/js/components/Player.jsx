@@ -10,13 +10,14 @@ const Player = function(props) {
       />
       <div className="player-body">
         <div className="name">
-          {props.player.summonerName}
+          {props.player.name}
           <span className="champ-name">
             {props.player.championName}
           </span>
         </div>
         <div>
-          {props.player.items.map(function(item) {
+          {props.player.items.length > 0 &&
+            props.player.items.map(function(item) {
             return (
               <Item
                 key={item.name}

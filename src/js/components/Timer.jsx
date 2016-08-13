@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 const Timer = ({gameTime}) =>
   <div className="timer-component">
 
-    {formatTime(gameTime)}
+    {gameTime}
 
     <div className="live">
       LIVE

@@ -13,12 +13,12 @@ function teamKills(team, players) {
 }
 
 export default function Game(props) {
-  const { game, teams, players } = props;
+  const { game, gameTime, teams, players } = props;
 
   return (
     <div>
       <Header
-        gameTime={game.gameTime}
+        gameTime={gameTime}
         kills={teams.map((team) => teamKills(team, players))}
       />
 
@@ -27,18 +27,9 @@ export default function Game(props) {
       />
 
       <PlayerStats
+        teamIds={teams.map((team) => team.id)}
         players={players}
       />
-
-      {players &&
-        players.map((player) => (
-          <Player
-            key={player.id}
-            player={player}
-          />
-        ))
-      }
-
 
     </div>
   );

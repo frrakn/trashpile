@@ -1,6 +1,8 @@
 export default function gameTime(state = 0, action) {
-  if (action.timestamp && action.timestamp > state) {
-    return action.timestamp;
+  if (action.payload &&
+      action.payload.timestamp &&
+      action.payload.timestamp > state) {
+    return action.payload.timestamp;
   } else {
     return state;
   }

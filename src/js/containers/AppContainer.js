@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import App from '../components/App';
 import { connect } from 'react-redux';
-import { updateTime, updateState } from '../actions/index';
+import { updateGame, updateTime, updateState, setGameContext } from '../actions/index';
+import { updateTeam } from '../actions/teams';
+import { updatePlayer } from '../actions/players';
 import WebsocketConnection from '../util/websocketConnection';
+import fetchContext from '../util/context';
 
 function getTeamKills(players) {
   return players.reduce(function(kills, player) {
@@ -30,23 +33,50 @@ function mapStateToProps(state) {
     players: state.players,
     teams: state.teams,
     games: state.games,
-    selectedGameId: selectedGameId
+    selectedGameId: selectedGameId,
+    stats: state.stats,
+    gameTime: state.gameTime
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     updateGameTime: gameTime => (e) => dispatch(updateTime(gameTime)),
-    setGameState: state => dispatch(updateState(state))
+    setGameContext: function(context) {
+      dispatch(setGameContext(context));
+      return context;
+    },
+    handleMessage: function(statsMap) {
+      return function(message) {
+        const stat = statsMap.filter((stat) => stat.id === message.statid)[0];
+
+        if (stat.name == 'teamId') {
+          return;
+        }
+
+        if (message.teamid) {
+          dispatch(updateTeam(message, stat, message.jsonvalue));
+        } else if (message.playerid) {
+          dispatch(updatePlayer(message, stat, message.jsonvalue));
+        }
+      }
+    }
   };
 }
 
 class Container extends React.Component {
   componentDidMount() {
-    const url = 'ws://52.23.8.215:9721/',
-      ws = new WebsocketConnection(url, {debug: true});
+    fetchContext(70)
+      .then((context) => this.props.setGameContext(context))
+      .then(function(context) {
+        const url = 'ws://localhost:8080/',
+        ws = new WebsocketConnection(url,
+          this.props.handleMessage(this.props.stats),
+          {debug: false}
+        );
 
-    ws.connect();
+        ws.connect();
+      }.bind(this))
   }
 
   render() {

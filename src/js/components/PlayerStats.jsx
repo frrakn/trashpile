@@ -8,22 +8,26 @@ const playerStatsMap = [
   {
     key: 'level',
     abbreviation: 'L'
+  },
+  {
+    key: 'xp',
+    abbreviation: 'XP'
   }
 ];
 
 function renderRow(player) {
   var stats = playerStatsMap.map(function(stat) {
     return (
-      <td key={stat.key}>
-        {player[stat.key]}
+      <td key={stat.key + player.id}>
+        {player[stat.key] || 0}
       </td>
     );
   });
 
   return (
-    <tr key={player.summonerName}>
+    <tr key={player.id}>
       <td>
-        {player.summonerName}
+        {player.name}
       </td>
       <td>
         {player.kills}
@@ -62,18 +66,7 @@ const PlayerStats = function(props) {
           </tr>
         </thead>
         <tbody>
-          {props.players.slice(0, 5).map(function(player) {
-            return renderRow(player);
-          })}
-
-          <tr>
-            <td
-              className="table-break"
-              colSpan="4">
-            </td>
-          </tr>
-
-          {props.players.slice(5, 10).map(function(player) {
+          {props.players.map(function(player) {
             return renderRow(player);
           })}
         </tbody>
