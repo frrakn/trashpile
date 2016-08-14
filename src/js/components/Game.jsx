@@ -20,15 +20,19 @@ export default function Game(props) {
       <Header
         gameTime={gameTime}
         redTeamKills={teamKills(teams[0], players)}
+        redTeamName={teams[0].name}
         blueTeamKills={teamKills(teams[1], players)}
+        blueTeamName={teams[1].name}
       />
 
       <TeamStats
         teams={teams}
+        players={players}
       />
 
       <PlayerStats
-        teamIds={teams.map((team) => team.id)}
+        redTeam={teams[0]}
+        blueTeam={teams[1]}
         players={players}
       />
 

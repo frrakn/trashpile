@@ -30,20 +30,39 @@ class Stat extends React.Component {
   }
 }
 
-class AdditionalStats extends React.Component {
+class ExtendedKillsHeader extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
   render() {
-    {playerStatsMap.map(function(stat) {
-      return (
-        <Stat
-          key={this.props.player.id}
-          value={this.props.player[stat.key]}
-        />
-      );
-    }.bind(this))}
+    return (
+      <td>
+        Multi
+      </td>
+    );
+  }
+}
+
+class ExtendedKills extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
+
+  render() {
+    const {double, triple, quadra, penta} = this.props;
+
+    return (
+      <td>
+        {double}
+        <span className="divider-gray">/</span>
+        {triple}
+        <span className="divider-gray">/</span>
+        {quadra}
+        <span className="divider-gray">/</span>
+        {penta}
+      </td>
+    );
   }
 }
 
@@ -71,11 +90,19 @@ class Row extends React.Component {
   }
 
   render() {
-    const {id, name, kills, assists, deaths} = this.props.player;
+    const {
+      id, name, kills, assists, deaths, championName,
+      doubleKills, tripleKills, quadraKills, pentaKills
+    } = this.props.player;
 
     return (
       <tr key={id}>
-        <td>{name}</td>
+        <td>
+          {name}
+          <span className="champ-name">
+            {championName.replace(/['"]+/g, '')}
+          </span>
+        </td>
 
         <KDA
           kills={kills}
@@ -91,6 +118,13 @@ class Row extends React.Component {
             />
           );
         }.bind(this))}
+
+        <ExtendedKills
+          double={doubleKills}
+          triple={tripleKills}
+          quadra={quadraKills}
+          penta={pentaKills}
+        />
       </tr>
     );
   }
@@ -115,11 +149,13 @@ class Header extends React.Component {
           </td>
           {playerStatsMap.map(function(stat) {
             return (
-              <td key={stat.abbreviation}>
+              <td key={stat.key}>
                 {stat.abbreviation}
               </td>
             );
           })}
+
+          <ExtendedKillsHeader />
         </tr>
       </thead>
     );

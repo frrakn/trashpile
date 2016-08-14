@@ -39,6 +39,10 @@ function mapStateToProps(state) {
   };
 }
 
+const statBlackList = [
+  'x', 'y', 'xp', 'teamId'
+];
+
 function mapDispatchToProps(dispatch) {
   return {
     updateGameTime: gameTime => (e) => dispatch(updateTime(gameTime)),
@@ -50,7 +54,7 @@ function mapDispatchToProps(dispatch) {
       return function(message) {
         const stat = statsMap.filter((stat) => stat.id === message.statid)[0];
 
-        if (stat.name == 'teamId') {
+        if (statBlackList.includes(stat.name)) {
           return;
         }
 
