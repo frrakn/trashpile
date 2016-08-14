@@ -19,7 +19,8 @@ export default function Game(props) {
     <div>
       <Header
         gameTime={gameTime}
-        kills={teams.map((team) => teamKills(team, players))}
+        redTeamKills={teamKills(teams[0], players)}
+        blueTeamKills={teamKills(teams[1], players)}
       />
 
       <TeamStats
