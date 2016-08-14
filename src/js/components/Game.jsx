@@ -36,6 +36,15 @@ export default function Game(props) {
         players={players}
       />
 
+      {players.map(function(player) {
+        return (
+          <Player
+            key={player.id}
+            player={player}
+          />
+        );
+      })}
+
     </div>
   );
 }

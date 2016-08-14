@@ -25,7 +25,7 @@
 }
 
 .player-body {
-  flex: 1;
+  display: flex;
 
   .name {
     -webkit-font-smoothing: antialiased;
@@ -34,9 +34,15 @@
   }
 
   .champ-name {
-    margin-left: 1em;
+    display: block;
+    margin-top: 0.2em;
     color: $alt-font-color;
   }
+}
+
+.items {
+  // flex: 1;
+  margin-left: 1em;
 }
 
 .item {

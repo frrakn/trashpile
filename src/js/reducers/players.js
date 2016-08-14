@@ -46,8 +46,16 @@ export default function players(state = [], action) {
       const index = state.findIndex((player) => player.id === playerId);
 
       if (index !== -1) {
+        let value = action.value;
+        if (!isNaN(value)) {
+          value = +value;
+        } else if (action.stat.name === 'championName') {
+          value = value.replace(/['"]+/g, '');
+        } else if (action.stat.name === 'items') {
+          value = JSON.parse(value);
+        }
         const newProp = {
-          [action.stat.name]: isNaN(action.value) ? action.value : +action.value
+          [action.stat.name]: value
         };
 
         return [

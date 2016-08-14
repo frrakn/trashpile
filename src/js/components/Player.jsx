@@ -1,34 +1,43 @@
 import React, { Component, PropTypes } from 'react';
 import Item from './Item';
+import shallowCompare from 'react-addons-shallow-compare';
+import idGenerator from '../util/idGenerator';
 
-const Player = function(props) {
-  return (
-    <div className="player">
-      <div
-        className="player-portrait"
-        style={{backgroundImage: `url('//ddragon.leagueoflegends.com/cdn/6.12.1/img/champion/${props.player.championName}.png')`}}
-      />
-      <div className="player-body">
-        <div className="name">
-          {props.player.name}
-          <span className="champ-name">
-            {props.player.championName}
-          </span>
-        </div>
-        <div>
-          {props.player.items.length > 0 &&
-            props.player.items.map(function(item) {
-            return (
-              <Item
-                key={item.name}
-                item={item}
-              />
-            );
-          })}
+class Player extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
+
+  render() {
+    const {name, championName, items} = this.props.player;
+
+    return (
+      <div className="player">
+        <div
+          className="player-portrait"
+          style={{backgroundImage: `url('//ddragon.leagueoflegends.com/cdn/6.12.1/img/champion/${championName}.png')`}}
+        />
+        <div className="player-body">
+          <div className="name">
+            {name}
+            <span className="champ-name">
+              {championName}
+            </span>
+          </div>
+          <div className="items">
+            {items.map(function(item, i) {
+              return (
+                <Item
+                  key={item + i}
+                  item={item}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Player;

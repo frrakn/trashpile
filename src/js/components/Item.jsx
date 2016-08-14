@@ -1,23 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import itemMap from '../schema/Items';
+import shallowCompare from 'react-addons-shallow-compare';
 
-function backgroundImage(item) {
-  return itemMap[item] ? itemMap[item].image : null;
-}
+class Item extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
 
-const Item = function(props) {
-  const { item } = props;
-  let style = {
-    background: backgroundImage(item) || 'none'
-  };
+  render() {
+    const item = itemMap[this.props.item];
 
-  return (
-    <div
-      id={item.name}
-      className="item"
-      style={style}
-    />
-  );
+    let style = {
+      background: item ? item.image : 'none'
+    };
+
+    return (
+      <div
+        className="item"
+        style={style}
+      />
+    );
+  }
 }
 
 export default Item;

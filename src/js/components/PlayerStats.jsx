@@ -100,7 +100,7 @@ class Row extends React.Component {
         <td>
           {name}
           <span className="champ-name">
-            {championName.replace(/['"]+/g, '')}
+            {championName}
           </span>
         </td>
 
