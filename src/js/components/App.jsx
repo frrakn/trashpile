@@ -6,7 +6,9 @@ export default function App(props) {
     selectedGame = games.filter((game) => game.id === selectedGameId)[0],
     selectedTeams = teams.filter((team) => selectedGame.teamIds.includes(team.id)),
     selectedTeamsIds = selectedTeams.map((team) => team.id),
-    selectedPlayers = players.filter((player) => selectedTeamsIds.includes(player.teamId));
+    selectedPlayers = players.filter((player) => {
+      return selectedTeamsIds.includes(player.teamId) && player.level > 0
+    });
 
   return (
     <div className="app-component">
