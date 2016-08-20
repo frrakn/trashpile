@@ -73,8 +73,7 @@ class Container extends React.Component {
     fetchContext(70)
       .then((context) => this.props.setGameContext(context))
       .then(function(context) {
-        // const url = 'ws://52.207.220.185:9721/',
-        const url = 'ws://localhost:8080',
+        const url = 'ws://52.207.220.185:9721/',
         ws = new WebsocketConnection(url,
           this.props.handleMessage(this.props.stats),
           {debug: false}
