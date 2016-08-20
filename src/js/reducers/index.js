@@ -9,6 +9,5 @@ export default combineReducers({
   games,
   players,
   teams,
-  gameTime,
   stats
 });

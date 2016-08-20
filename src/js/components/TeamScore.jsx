@@ -17,8 +17,8 @@ class TeamScore extends React.Component {
         </div>
 
         <span className="team-name">
-            {name}
-          </span>
+          {name}
+        </span>
       </div>
     );
   }

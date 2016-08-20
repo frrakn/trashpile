@@ -13,12 +13,12 @@ function teamKills(team, players) {
 }
 
 export default function Game(props) {
-  const { game, gameTime, teams, players } = props;
+  const { game, teams, players } = props;
 
   return (
     <div>
       <Header
-        gameTime={gameTime}
+        gameTime={game.gameTime}
         redTeamKills={teamKills(teams[0], players)}
         redTeamName={teams[0].name}
         blueTeamKills={teamKills(teams[1], players)}
@@ -28,7 +28,7 @@ export default function Game(props) {
       <div className="stream-container">
         <iframe
           className="stream-iframe"
-          src={"http://player.twitch.tv/?channel=${riotgames}"}
+          src={"http://player.twitch.tv/?channel=${nalcs1}"}
           height={"360"}
           frameBorder={"0"}
           scrolling={"no"}
@@ -36,7 +36,8 @@ export default function Game(props) {
         />
 
         <TeamStats
-          teams={teams}
+          redTeam={teams[0]}
+          blueTeam={teams[1]}
           players={players}
         />
       </div>

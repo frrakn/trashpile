@@ -34,8 +34,7 @@ function mapStateToProps(state) {
     teams: state.teams,
     games: state.games,
     selectedGameId: selectedGameId,
-    stats: state.stats,
-    gameTime: state.gameTime
+    stats: state.stats
   };
 }
 
@@ -70,7 +69,7 @@ function mapDispatchToProps(dispatch) {
 
 class Container extends React.Component {
   componentDidMount() {
-    fetchContext(70)
+    fetchContext(114)
       .then((context) => this.props.setGameContext(context))
       .then(function(context) {
         const url = 'ws://52.207.220.185:9721/',

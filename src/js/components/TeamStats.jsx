@@ -32,10 +32,10 @@ class Header extends React.Component {
             Team Stats
           </td>
           <td>
-            {this.props.redTeamName}
+            {this.props.blueTeamName}
           </td>
           <td>
-            {this.props.blueTeamName}
+            {this.props.redTeamName}
           </td>
         </tr>
       </thead>
@@ -49,7 +49,7 @@ class TeamGold extends React.Component {
   }
 
   render() {
-    const {redTeamGold, blueTeamGold} = this.props;
+    const {blueTeamGold, redTeamGold} = this.props;
 
     return (
         <tr>
@@ -57,10 +57,10 @@ class TeamGold extends React.Component {
             Gold
           </td>
           <td>
-            {redTeamGold}
+            {blueTeamGold}
           </td>
           <td>
-            {blueTeamGold}
+            {redTeamGold}
           </td>
         </tr>
     );
@@ -83,21 +83,21 @@ class TeamStats extends React.Component {
   }
 
   render() {
-    const {teams, players} = this.props;
+    const {blueTeam, redTeam, players} = this.props;
 
     return (
       <div className="team-stats">
         <table className="table">
           <Header
-            blueTeamName={teams[0].name}
-            redTeamName={teams[1].name}
+            blueTeamName={blueTeam.name}
+            redTeamName={redTeam.name}
           />
 
           <tbody>
 
             <TeamGold
-              redTeamGold={calculateTeamGold(teams[0].id, players)}
-              blueTeamGold={calculateTeamGold(teams[1].id, players)}
+              blueTeamGold={calculateTeamGold(blueTeam.id, players)}
+              redTeamGold={calculateTeamGold(redTeam.id, players)}
             />
 
             {teamStatsMap.map(function(stat) {
@@ -107,10 +107,10 @@ class TeamStats extends React.Component {
                       {stat.label}
                     </td>
                     <td>
-                      {teams[0][stat.key]}
+                      {blueTeam[stat.key]}
                     </td>
                     <td>
-                      {teams[1][stat.key]}
+                      {redTeam[stat.key]}
                     </td>
                   </tr>
                 )
