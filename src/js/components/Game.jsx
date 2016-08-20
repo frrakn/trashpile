@@ -25,10 +25,21 @@ export default function Game(props) {
         blueTeamName={teams[1].name}
       />
 
-      <TeamStats
-        teams={teams}
-        players={players}
-      />
+      <div className="stream-container">
+        <iframe
+          className="stream-iframe"
+          src={"http://player.twitch.tv/?channel=${riotgames}"}
+          height={"360"}
+          frameBorder={"0"}
+          scrolling={"no"}
+          allowFullScreen={"true"}
+        />
+
+        <TeamStats
+          teams={teams}
+          players={players}
+        />
+      </div>
 
       <PlayerStats
         redTeam={teams[0]}

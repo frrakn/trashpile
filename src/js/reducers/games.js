@@ -15,7 +15,7 @@ export default function games(state = [], action) {
         ...state,
         Object.assign({}, gameSchema, {
           id: action.context.game.GameID,
-          teamIds: [action.context.game.RedTeamID, action.context.game.BlueTeamID]
+          teamIds: [action.context.game.BlueTeamID, action.context.game.RedTeamID]
         })
       ];
     default:

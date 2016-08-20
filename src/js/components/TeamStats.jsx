@@ -89,8 +89,8 @@ class TeamStats extends React.Component {
       <div className="team-stats">
         <table className="table">
           <Header
-            redTeamName={teams[0].name}
-            blueTeamName={teams[1].name}
+            blueTeamName={teams[0].name}
+            redTeamName={teams[1].name}
           />
 
           <tbody>

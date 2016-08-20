@@ -44,7 +44,6 @@ export default function teams(state = [], action) {
           ...state.slice(index + 1)
         ]
       } else {
-        debugger;
         return [
           ...state,
           createTeam({

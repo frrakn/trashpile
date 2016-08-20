@@ -70,10 +70,11 @@ function mapDispatchToProps(dispatch) {
 
 class Container extends React.Component {
   componentDidMount() {
-    fetchContext(91)
+    fetchContext(70)
       .then((context) => this.props.setGameContext(context))
       .then(function(context) {
-        const url = 'ws://52.207.220.185:9721/',
+        // const url = 'ws://52.207.220.185:9721/',
+        const url = 'ws://localhost:8080',
         ws = new WebsocketConnection(url,
           this.props.handleMessage(this.props.stats),
           {debug: false}

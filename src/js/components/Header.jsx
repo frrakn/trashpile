@@ -12,9 +12,9 @@ export default class Header extends React.Component {
     return (
       <div className="header-component container">
         <TeamScore
-          color={'red'}
-          kills={this.props.redTeamKills}
-          name={this.props.redTeamName}
+          color={'blue'}
+          kills={this.props.blueTeamKills}
+          name={this.props.blueTeamName}
         />
 
         <Timer
@@ -22,9 +22,9 @@ export default class Header extends React.Component {
         />
 
         <TeamScore
-          color={'blue'}
-          kills={this.props.blueTeamKills}
-          name={this.props.blueTeamName}
+          color={'red'}
+          kills={this.props.redTeamKills}
+          name={this.props.redTeamName}
         />
       </div>
     );
